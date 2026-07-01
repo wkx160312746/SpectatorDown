@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>短剧搜索</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="search-shell">
+        <div class="search-head">
+          <div>
+            <p class="eyebrow">Minimal Search Demo</p>
+            <h1>短剧搜索</h1>
+          </div>
+          <div class="status-stack">
+            <div class="toolbar-row">
+              <button id="exports-button" class="exports-button" type="button">
+                导出任务
+                <span id="exports-badge" class="exports-badge">0</span>
+              </button>
+            </div>
+            <p id="status" class="status">输入关键字后开始搜索。</p>
+            <div id="auth-bar" class="auth-bar hidden">
+              <span id="auth-state" class="auth-state">未登录</span>
+              <button id="logout-button" class="auth-button" type="button">退出</button>
+            </div>
+          </div>
+        </div>
+
+        <form id="search-form" class="search-form">
+          <input
+            id="keyword"
+            name="keyword"
+            type="text"
+            placeholder="输入剧名、演员、题材，例如 测试"
+          />
+          <button type="submit">搜索</button>
+        </form>
+
+        <div class="suggestions-row">
+          <span class="suggestions-label">推荐关键词</span>
+          <div id="suggestion-list" class="suggestion-list"></div>
+        </div>
+      </section>
+
+      <section class="results-shell">
+        <div class="results-head">
+          <div>
+            <p class="eyebrow">Search Results</p>
+            <h2>搜索结果列表</h2>
+          </div>
+          <span id="result-count-badge" class="result-count-badge">0</span>
+        </div>
+
+        <div class="results-scroll">
+          <ul id="result-list" class="result-list"></ul>
+        </div>
+      </section>
+    </main>
+
+    <div id="detail-modal" class="detail-modal hidden" aria-hidden="true">
+      <div class="detail-backdrop" data-close-detail="true"></div>
+      <section class="detail-dialog" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+        <div class="detail-dialog-head">
+          <div>
+            <p class="eyebrow">Drama Detail</p>
+            <h2 id="detail-title">详情信息</h2>
+          </div>
+          <button id="detail-close" class="detail-close" type="button" aria-label="关闭">关闭</button>
+        </div>
+        <div id="detail-content" class="detail-content">正在加载详情...</div>
+      </section>
+    </div>
+
+    <div id="exports-modal" class="detail-modal hidden" aria-hidden="true">
+      <div class="detail-backdrop" data-close-exports="true"></div>
+      <section class="detail-dialog exports-dialog" role="dialog" aria-modal="true" aria-labelledby="exports-title">
+        <div class="detail-dialog-head">
+          <div>
+            <p class="eyebrow">Export Queue</p>
+            <h2 id="exports-title">当前导出任务</h2>
+          </div>
+          <button id="exports-close" class="detail-close" type="button" aria-label="关闭">关闭</button>
+        </div>
+        <div id="exports-content" class="exports-content"></div>
+      </section>
+    </div>
+
+    <div id="auth-overlay" class="auth-overlay hidden" aria-hidden="true">
+      <section class="auth-card" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+        <p class="eyebrow">Access Control</p>
+        <h2 id="auth-title">输入访问密钥</h2>
+        <p class="auth-copy">上线后只有持有密钥的用户才能访问搜索、详情和下载接口。</p>
+        <form id="auth-form" class="auth-form">
+          <input id="access-key" name="accessKey" type="password" placeholder="输入 ACCESS_KEY" autocomplete="current-password" />
+          <button type="submit">验证并进入</button>
+        </form>
+        <p id="auth-error" class="auth-error"></p>
+      </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

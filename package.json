@@ -1,0 +1,14 @@
+{
+  "name": "minimal-search-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Minimal Zeabur-ready short-drama search and download tool",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "HOST=127.0.0.1 COOKIE_SECURE=false node server.js",
+    "check": "node --check server.js && node --check app.js"
+  }
+}
